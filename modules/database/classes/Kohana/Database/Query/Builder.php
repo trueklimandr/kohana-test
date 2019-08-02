@@ -1,12 +1,12 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * Database query builder. See [Query Builder](/database/query/builder) for usage and examples.
  *
  * @package    Kohana/Database
  * @category   Query
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2008-2009 Kohana Team
+ * @license    http://kohanaphp.com/license
  */
 abstract class Kohana_Database_Query_Builder extends Database_Query {
 
@@ -19,7 +19,7 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 	 */
 	protected function _compile_join(Database $db, array $joins)
 	{
-		$statements = [];
+		$statements = array();
 
 		foreach ($joins as $join)
 		{
@@ -110,10 +110,6 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 						// Quote the min and max value
 						$value = $min.' AND '.$max;
 					}
-					elseif ($op === 'IN' AND is_array($value) AND count($value) === 0)
-					{
-						$value = '(NULL)';
-					}
 					elseif ((is_string($value) AND array_key_exists($value, $this->_parameters)) === FALSE)
 					{
 						// Quote the value, it is not a parameter
@@ -154,7 +150,7 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 	 */
 	protected function _compile_set(Database $db, array $values)
 	{
-		$set = [];
+		$set = array();
 		foreach ($values as $group)
 		{
 			// Split the set
@@ -184,7 +180,7 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 	 */
 	protected function _compile_group_by(Database $db, array $columns)
 	{
-		$group = [];
+		$group = array();
 
 		foreach ($columns as $column)
 		{
@@ -208,15 +204,13 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 	/**
 	 * Compiles an array of ORDER BY statements into an SQL partial.
 	 *
-	 * @param  Database  $db       Database instance
-	 * @param  array     $columns  sorting columns
-	 *
-	 * @return string
-	 * @throws Database_Exception
+	 * @param   object  $db       Database instance
+	 * @param   array   $columns  sorting columns
+	 * @return  string
 	 */
 	protected function _compile_order_by(Database $db, array $columns)
 	{
-		$sort = [];
+		$sort = array();
 		foreach ($columns as $group)
 		{
 			list ($column, $direction) = $group;
@@ -236,11 +230,6 @@ abstract class Kohana_Database_Query_Builder extends Database_Query {
 			{
 				// Make the direction uppercase
 				$direction = ' '.strtoupper($direction);
-
-				// Make sure direction is either ASC or DESC to prevent injections
-				if ( ! in_array($direction, [' ASC', ' DESC'])) {
-					throw new Database_Exception('Invalid sorting direction: ' . $direction);
-				}
 			}
 
 			$sort[] = $column.$direction;

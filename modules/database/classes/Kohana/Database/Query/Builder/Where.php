@@ -1,20 +1,20 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * Database query builder for WHERE statements. See [Query Builder](/database/query/builder) for usage and examples.
  *
  * @package    Kohana/Database
  * @category   Query
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2008-2009 Kohana Team
+ * @license    http://kohanaphp.com/license
  */
 abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builder {
 
 	// WHERE ...
-	protected $_where = [];
+	protected $_where = array();
 
 	// ORDER BY ...
-	protected $_order_by = [];
+	protected $_order_by = array();
 
 	// LIMIT ...
 	protected $_limit = NULL;
@@ -42,7 +42,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function and_where($column, $op, $value)
 	{
-		$this->_where[] = ['AND' => [$column, $op, $value]];
+		$this->_where[] = array('AND' => array($column, $op, $value));
 
 		return $this;
 	}
@@ -57,7 +57,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function or_where($column, $op, $value)
 	{
-		$this->_where[] = ['OR' => [$column, $op, $value]];
+		$this->_where[] = array('OR' => array($column, $op, $value));
 
 		return $this;
 	}
@@ -79,7 +79,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function and_where_open()
 	{
-		$this->_where[] = ['AND' => '('];
+		$this->_where[] = array('AND' => '(');
 
 		return $this;
 	}
@@ -91,7 +91,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function or_where_open()
 	{
-		$this->_where[] = ['OR' => '('];
+		$this->_where[] = array('OR' => '(');
 
 		return $this;
 	}
@@ -133,7 +133,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function and_where_close()
 	{
-		$this->_where[] = ['AND' => ')'];
+		$this->_where[] = array('AND' => ')');
 
 		return $this;
 	}
@@ -145,7 +145,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function or_where_close()
 	{
-		$this->_where[] = ['OR' => ')'];
+		$this->_where[] = array('OR' => ')');
 
 		return $this;
 	}
@@ -159,7 +159,7 @@ abstract class Kohana_Database_Query_Builder_Where extends Database_Query_Builde
 	 */
 	public function order_by($column, $direction = NULL)
 	{
-		$this->_order_by[] = [$column, $direction];
+		$this->_order_by[] = array($column, $direction);
 
 		return $this;
 	}

@@ -1,4 +1,4 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * Provides a shortcut to get Database related objects for [making queries](../database/query).
  *
@@ -16,8 +16,8 @@
  * @package    Kohana/Database
  * @category   Base
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2009 Kohana Team
+ * @license    http://kohanaphp.com/license
  */
 class Kohana_DB {
 
@@ -131,7 +131,7 @@ class Kohana_DB {
 	 * @param   array   parameters
 	 * @return  Database_Expression
 	 */
-	public static function expr($string, $parameters = [])
+	public static function expr($string, $parameters = array())
 	{
 		return new Database_Expression($string, $parameters);
 	}

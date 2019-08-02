@@ -1,12 +1,12 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * Database Model base class.
  *
  * @package    Kohana/Database
  * @category   Models
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2008-2012 Kohana Team
+ * @license    http://kohanaframework.org/license
  */
 abstract class Kohana_Model_Database extends Model {
 

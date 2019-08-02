@@ -4,7 +4,6 @@
 - [Relationships](relationships)
 - [Validation](validation)
 - [Filters](filters)
-- [Behaviors](behaviors)
 - [Examples](examples)
     - [Simple](examples/simple)
     - [Validation](examples/validation)

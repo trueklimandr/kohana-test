@@ -1,12 +1,12 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * PDO database connection.
  *
  * @package    Kohana/Database
  * @category   Drivers
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2008-2009 Kohana Team
+ * @license    http://kohanaphp.com/license
  */
 class Kohana_Database_PDO extends Database {
 
@@ -30,12 +30,12 @@ class Kohana_Database_PDO extends Database {
 			return;
 
 		// Extract the connection parameters, adding required variabels
-		extract($this->_config['connection'] + [
+		extract($this->_config['connection'] + array(
 			'dsn'        => '',
 			'username'   => NULL,
 			'password'   => NULL,
 			'persistent' => FALSE,
-		]);
+		));
 
 		// Clear the connection parameters for security
 		unset($this->_config['connection']);
@@ -57,7 +57,7 @@ class Kohana_Database_PDO extends Database {
 		catch (PDOException $e)
 		{
 			throw new Database_Exception(':error',
-				[':error' => $e->getMessage()],
+				array(':error' => $e->getMessage()),
 				$e->getCode());
 		}
 
@@ -155,10 +155,10 @@ class Kohana_Database_PDO extends Database {
 
 			// Convert the exception in a database exception
 			throw new Database_Exception(':error [ :query ]',
-				[
+				array(
 					':error' => $e->getMessage(),
 					':query' => $sql
-				],
+				),
 				$e->getCode());
 		}
 
@@ -194,10 +194,10 @@ class Kohana_Database_PDO extends Database {
 		elseif ($type === Database::INSERT)
 		{
 			// Return a list of insert id and rows created
-			return [
+			return array(
 				$this->_connection->lastInsertId(),
 				$result->rowCount(),
-			];
+			);
 		}
 		else
 		{
@@ -233,13 +233,13 @@ class Kohana_Database_PDO extends Database {
 	public function list_tables($like = NULL)
 	{
 		throw new Kohana_Exception('Database method :method is not supported by :class',
-			[':method' => __FUNCTION__, ':class' => __CLASS__]);
+			array(':method' => __FUNCTION__, ':class' => __CLASS__));
 	}
 
 	public function list_columns($table, $like = NULL, $add_prefix = TRUE)
 	{
 		throw new Kohana_Exception('Database method :method is not supported by :class',
-			[':method' => __FUNCTION__, ':class' => __CLASS__]);
+			array(':method' => __FUNCTION__, ':class' => __CLASS__));
 	}
 
 	public function escape($value)

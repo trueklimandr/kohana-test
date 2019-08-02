@@ -1,12 +1,12 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * Database query builder for JOIN statements. See [Query Builder](/database/query/builder) for usage and examples.
  *
  * @package    Kohana/Database
  * @category   Query
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2008-2009 Kohana Team
+ * @license    http://kohanaphp.com/license
  */
 class Kohana_Database_Query_Builder_Join extends Database_Query_Builder {
 
@@ -17,10 +17,10 @@ class Kohana_Database_Query_Builder_Join extends Database_Query_Builder {
 	protected $_table;
 
 	// ON ...
-	protected $_on = [];
+	protected $_on = array();
 
 	// USING ...
-	protected $_using = [];
+	protected $_using = array();
 
 	/**
 	 * Creates a new JOIN statement for a table. Optionally, the type of JOIN
@@ -57,7 +57,7 @@ class Kohana_Database_Query_Builder_Join extends Database_Query_Builder {
 			throw new Kohana_Exception('JOIN ... ON ... cannot be combined with JOIN ... USING ...');
 		}
 
-		$this->_on[] = [$c1, $op, $c2];
+		$this->_on[] = array($c1, $op, $c2);
 
 		return $this;
 	}
@@ -111,11 +111,11 @@ class Kohana_Database_Query_Builder_Join extends Database_Query_Builder {
 		if ( ! empty($this->_using))
 		{
 			// Quote and concat the columns
-			$sql .= ' USING ('.implode(', ', array_map([$db, 'quote_column'], $this->_using)).')';
+			$sql .= ' USING ('.implode(', ', array_map(array($db, 'quote_column'), $this->_using)).')';
 		}
 		else
 		{
-			$conditions = [];
+			$conditions = array();
 			foreach ($this->_on as $condition)
 			{
 				// Split the condition
@@ -143,7 +143,7 @@ class Kohana_Database_Query_Builder_Join extends Database_Query_Builder {
 		$this->_type =
 		$this->_table = NULL;
 
-		$this->_on = [];
+		$this->_on = array();
 	}
 
 } // End Database_Query_Builder_Join

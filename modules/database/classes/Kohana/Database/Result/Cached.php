@@ -1,12 +1,12 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 /**
  * Object used for caching the results of select queries.  See [Results](/database/results#select-cached) for usage and examples.
  *
  * @package    Kohana/Database
  * @category   Query/Result
  * @author     Kohana Team
- * @copyright  (c) Kohana Team
- * @license    https://koseven.ga/LICENSE.md
+ * @copyright  (c) 2009 Kohana Team
+ * @license    http://kohanaphp.com/license
  */
 class Kohana_Database_Result_Cached extends Database_Result {
 
