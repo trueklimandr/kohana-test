@@ -50,9 +50,13 @@ class Controller_User extends Controller
     private function getNamesData(): array
     {
         $user = new Model_User();
-        $users = $user->getNamesStat();
+        $users = $user->getNamesStat($this->request->query());
+        $filter['ages'] = range(100, 0);
+        $filter['maxAge'] = $this->request->query('maxAge');
+        $filter['letters'] = range('A', 'Z');
+        $filter['firstLetter'] = $this->request->query('firstLetter');
 
-        return compact('users');
+        return compact('users', 'filter');
     }
 
     /**
