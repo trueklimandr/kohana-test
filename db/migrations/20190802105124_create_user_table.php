@@ -32,11 +32,11 @@ class CreateUserTable extends AbstractMigration
     public function change()
     {
         $table = $this->table('user');
-        $table->addColumn('first_name', 'string', ['limit' => 30])
-            ->addColumn('last_name', 'string', ['limit' => 50])
+        $table->addColumn('first_name', 'string', ['limit' => 100])
+            ->addColumn('last_name', 'string', ['limit' => 100])
             ->addColumn('birth_date', 'date')
-            ->addColumn('city', 'string', ['limit' => 30])
-            ->addColumn('profession', 'string', ['limit' => 50])
+            ->addColumn('city', 'string', ['limit' => 100])
+            ->addColumn('profession', 'string', ['limit' => 100])
             ->addColumn('children_count', 'integer')
             ->addColumn('created', 'datetime')
             ->addColumn('updated', 'datetime')
