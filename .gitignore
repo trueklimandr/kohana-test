@@ -21,3 +21,6 @@ composer.lock
 
 # extensions config
 phinx.yml
+
+# db config
+/modules/database/config/database.php
